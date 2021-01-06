@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Fruit Classifier</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<!-- <link href="static/css/style.css" rel=”stylesheet” type=”text/css” /> -->
+
+
+  
+<style>
+  ::placeholder {
+    color:rgb(13, 13, 14);
+    opacity:0.8; /* Firefox */
+    font-weight: bold;
+  }
+  </style>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+  <script>
+
+    $("#file-picker").change(function(){
+
+        var input = document.getElementById('file-picker');
+
+        for (var i=0; i<input.files.length; i++)
+        {
+            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+
+            if ((ext == 'jpg') || (ext == 'png'))
+            {
+                $("#msg").text("Files are supported")
+            }
+            else
+            {
+                $("#msg").text("Files are NOT supported")
+                document.getElementById("file-picker").value ="";
+            }
+
+        }
+
+
+    } );
+
+</script>
+<style>
+    #bro:hover{
+      background-color: white;
+      color: black;
+    }
+  </style>
+</head>
+<body style="background-image: url(static/bg-mint.png); 
+background-repeat:no-repeat;background-size:cover;height:100vh;">
+<h1 style="color: #3FC1C9; text-align: center;  font-family: Tahoma;">Fruit Classifier</h1>
+
+<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+
+<div class="login card" style="color: #3FC1C9; margin: auto; width: fit-content;">
+  <pre>
+  <h1 style="color: #3FC1C9;">Upload your image</h1>
+  <strong>Choose Image:</strong>
+  <input class="btn btn-primary btn-block btn-large" type="file" name="file" accept="image/*" multiple>
+  <input type="submit" value="Predict!" style="background-color: #3FC1C9; padding: 5px 20px; border-radius: 15px; width: 150px; color: white; transition: 0.6s ease;" id="bro" class="btn btn-primary btn-block btn-large">
+  </pre>
+</div>
+</form>
+
+</body>
+<footer>
+  <div style="position: fixed; display: inline-flex; width: 100vw; left: 0; bottom: 0px; font-family: Tahoma;">
+    <div style="width: 33vw; text-align: center; color: #fa4659;font-weight: bold;"><p>Trịnh Thế Long - 18DH110834</p></div>
+    <div style="width: 33vw; text-align: center;color: #fa4659;font-weight: bold;"><p>Trần Hà Tuấn Kiệt - 18DH110808</p></div>
+    <div style="width: 33vw; text-align: center;color: #fa4659;font-weight: bold;"><p>Trần Minh Chí - 18DH110859</p></div>
+  </div>
+</footer>
+</html>
